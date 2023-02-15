@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const menuItems = <>
-        <li className='font-semibold text-lg'><Link to='/'>Home</Link></li>
-        <li className='font-semibold text-lg'><Link to='/about'>About</Link></li>
-        <li className='font-semibold text-lg'><Link to='/messages'>Messages</Link></li>
+        <li className='font-semibold text-accent text-lg'><Link to='/'>Home</Link></li>
+        <li className='font-semibold text-accent text-lg'><Link to='/about'>About</Link></li>
+        <li className='font-semibold text-accent text-lg'><Link to='/messages'>Messages</Link></li>
     </>
 
     return (
@@ -19,7 +19,7 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl border border-slate-600">Socio Plus</a>
+                <a className="btn btn-ghost normal-case text-xl border-3 border-accent text-accent">Socio Plus</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -28,8 +28,8 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 <ul className='menu menu-horizontal px-1'>
-                    <li className='font-semibold text-lg'><Link to='/login'>Login</Link></li>
-                    <li className='font-semibold text-lg'><Link to='/signup'>Sign Up</Link></li>
+                    <li className='font-semibold text-accent text-lg'><Link to='/login'>Login</Link></li>
+                    <li className='font-semibold text-accent text-lg'><Link to='/signup'>Sign Up</Link></li>
                 </ul>
             </div>
         </div>
