@@ -1,9 +1,10 @@
 import React from 'react';
+import CreatePost from '../CreatePost/CreatePost';
 
 const Home = () => {
     return (
         <div className='mx-5'>
-            <h2 className="text-2xl font-bold">Home</h2>
+            <CreatePost />
         </div>
     );
 };
