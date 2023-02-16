@@ -1,15 +1,32 @@
-import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import {FcGoogle} from 'react-icons/fc';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Login = () => {
+    const {signIn} = useContext(AuthContext);
     const {register, handleSubmit, formState: {errors}} = useForm();
     const [firebaseError, setFirebaseError] = useState('');
     const [loginLoading, setLoginLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogin = (data, e) => {
+        const {email, password} = data;
+        setLoginLoading(true);
+        setFirebaseError('');
 
+        signIn(email, password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            setLoginLoading(false);
+            navigate('/');
+        })
+        .catch(err => {
+            console.error(err);
+            setFirebaseError(err.message);
+        });
     }
 
     const handleGoogleLogin = () => {

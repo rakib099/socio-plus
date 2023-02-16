@@ -28,6 +28,7 @@ const SignUp = () => {
             updateUserProfile(updateInfo)
             .then(() => {
                 console.log('profile updated');
+                setSignUpLoading(false);
                 navigate('/');
             })
             .catch(err => console.error(err));
