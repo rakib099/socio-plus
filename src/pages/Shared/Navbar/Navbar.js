@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const menuItems = <>
         <li className='font-semibold text-accent text-lg'><Link to='/'>Home</Link></li>
@@ -13,7 +14,11 @@ const Navbar = () => {
     </>
 
     const handleLogOut = () => {
-
+        logOut()
+        .then(() => {
+            navigate('/login');
+        })
+        .catch(err => console.error(err));
     }
 
     return (
