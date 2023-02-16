@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Navbar = () => {
+    const { user } = useContext(AuthContext);
+
     const menuItems = <>
         <li className='font-semibold text-accent text-lg'><Link to='/'>Home</Link></li>
         <li className='font-semibold text-accent text-lg'><Link to='/about'>About</Link></li>
         <li className='font-semibold text-accent text-lg'><Link to='/media'>Media</Link></li>
         <li className='font-semibold text-accent text-lg'><Link to='/messages'>Messages</Link></li>
     </>
+
+    const handleLogOut = () => {
+
+    }
 
     return (
         <div className="navbar bg-base-100">
@@ -20,7 +27,7 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl border-3 border-accent text-accent">Socio Plus</a>
+                <Link to='/' className="btn btn-ghost normal-case text-xl border-3 border-accent text-accent">Socio Plus</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -29,8 +36,18 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 <ul className='menu menu-horizontal px-1'>
-                    <li className='font-semibold text-accent text-lg'><Link to='/login'>Login</Link></li>
-                    <li className='font-semibold text-accent text-lg'><Link to='/signup'>Sign Up</Link></li>
+                    {
+                        user ?
+                            <>
+                                <li className='font-semibold text-accent text-lg px-4 py-3'>Welcome, {user.displayName}</li>
+                                <li className='font-semibold hidden lg:block'><button onClick={handleLogOut} className='btn btn-outline btn-accent'>Log Out</button></li>
+                            </>
+                            :
+                            <>
+                                <li className='font-semibold text-accent text-lg'><Link to='/login'>Login</Link></li>
+                                <li className='font-semibold text-accent text-lg'><Link to='/signup'>Sign Up</Link></li>
+                            </>
+                    }
                 </ul>
             </div>
         </div>
