@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { FcLike, FcLikePlaceholder } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import {toast} from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
 import proPic from '../../../assets/images/user-32.png';
+import { AuthContext } from '../../../contexts/AuthProvider';
 import msToDate from '../../../utils/msToDate';
 
 const Post = ({post}) => {
+    const {user: usr} = useContext(AuthContext);
     const {_id, user, text, img, likes} = post;
     const [liked, setLiked] = useState(false);
     const [counter, setCounter] = useState(likes);
+    const navigate = useNavigate();
     const date = msToDate(1676609263733);
 
     const handleLike = () => {
@@ -15,6 +19,13 @@ const Post = ({post}) => {
         liked ?
         setCounter(likes)
         : setCounter(likes + 1);
+    }
+
+    const handleDetailsBtn = () => {
+        if (!usr?.uid) {
+            return toast.error('Please login to see the details!');
+        }
+        navigate(`/posts/${_id}`);
     }
 
     return (
@@ -45,7 +56,7 @@ const Post = ({post}) => {
                     <span className='text-xl text-gray-500'>{counter}</span>
                 </div>
 
-                <Link to={`/posts/${_id}`}><button className="btn btn-accent btn-sm text-white mt-2">Details</button></Link>
+                <button onClick={handleDetailsBtn} className="btn btn-accent btn-sm text-white mt-2">Details</button>
             </div>
         </div>
     );
