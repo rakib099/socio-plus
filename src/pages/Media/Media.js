@@ -1,9 +1,11 @@
 import React from 'react';
+import Post from '../Shared/Post/Post';
 
 const Media = () => {
     return (
-        <div>
-            <h2 className="text-2xl">Media</h2>
+        <div className='mx-5'>
+            <h2 className="text-2xl text-center font-semibold">Posts</h2>
+            <Post />
         </div>
     );
 };
