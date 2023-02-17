@@ -25,11 +25,17 @@ const router = createBrowserRouter([
             },
             {
                 path: '/media',
-                element: <Media />
+                element: <Media />,
+                loader: () => {
+                    return fetch('http://localhost:5000/posts');
+                }
             },
             {
-                path: '/post-details/:id',
-                element: <PostDetails />
+                path: '/posts/:id',
+                element: <PostDetails />,
+                loader: ({params}) => {
+                    return fetch(`http://localhost:5000/posts/${params.id}`);
+                }
             }
         ]
     }

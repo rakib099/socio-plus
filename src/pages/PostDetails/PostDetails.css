@@ -1,0 +1,6 @@
+.comment {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    gap: 16px;
+    align-items: center;
+}
