@@ -29,14 +29,14 @@ const router = createBrowserRouter([
                 path: '/media',
                 element: <Media />,
                 loader: () => {
-                    return fetch('http://localhost:5000/posts');
+                    return fetch('https://socio-plus-server.vercel.app/posts');
                 }
             },
             {
                 path: '/posts/:id',
                 element: <PostDetails />,
                 loader: ({params}) => {
-                    return fetch(`http://localhost:5000/posts/${params.id}`);
+                    return fetch(`https://socio-plus-server.vercel.app/posts/${params.id}`);
                 }
             },
             {

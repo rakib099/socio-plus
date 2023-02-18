@@ -7,7 +7,7 @@ const TopPosts = () => {
     const {data: posts, isLoading, refetch} = useQuery({
         queryKey: ['posts'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/posts?page=home');
+            const res = await fetch('https://socio-plus-server.vercel.app/posts?page=home');
             const data = await res.json();
             return data;
         }

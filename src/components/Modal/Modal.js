@@ -7,7 +7,7 @@ const Modal = ({ aboutInfo, refetch, setOpenModal }) => {
     const {register, handleSubmit} = useForm();
 
     const handleInfoUpdate = (data, e) => {
-        fetch('http://localhost:5000/infos/63f0ade342350b5e723a5db3', {
+        fetch('https://socio-plus-server.vercel.app/infos/63f0ade342350b5e723a5db3', {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
@@ -21,6 +21,10 @@ const Modal = ({ aboutInfo, refetch, setOpenModal }) => {
                 setOpenModal(false);
                 toast.success('Info successfully updated!');
                 refetch();
+            }
+            else {
+                setOpenModal(false);
+                toast.success('Nothing changed!');
             }
         })
         .catch(err => console.error(err));

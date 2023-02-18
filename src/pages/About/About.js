@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Modal from '../../components/Modal/Modal';
 import Spinner from '../../components/Spinner/Spinner';
+import { toast } from 'react-hot-toast';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const About = () => {
+    const { user } = useContext(AuthContext);
     const [openModal, setOpenModal] = useState(true);
     const { data: aboutInfo, isLoading, refetch } = useQuery({
         queryKey: ['aboutInfo'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/infos/63f0ade342350b5e723a5db3');
+            const res = await fetch('https://socio-plus-server.vercel.app/infos/63f0ade342350b5e723a5db3');
             const data = await res.json();
             return data;
         }
@@ -20,11 +23,20 @@ const About = () => {
 
     const { name, uni, email, address } = aboutInfo;
 
+    const handleButtonEdit = () => {
+        if (!user?.uid) {
+            return toast.error('Please login to edit!');
+        }
+        else {
+            setOpenModal(true);
+        }
+    }
+
     return (
         <div className='mx-5'>
             <h2 className="text-2xl text-center font-semibold">About the author</h2>
             <div className="author lg:w-1/2 mx-auto rounded-lg border border-accent mt-3 p-4 relative">
-                <label onClick={() => setOpenModal(true)} htmlFor="edit-modal" className="btn btn-accent btn-sm text-white absolute top-2 right-2">Edit</label>
+                <label onClick={handleButtonEdit} htmlFor="edit-modal" className="btn btn-accent btn-sm text-white absolute top-2 right-2">Edit</label>
                 <div className="flex flex-col gap-3">
                     <div className="name flex gap-3">
                         <span className="text-xl">Name: </span>
@@ -45,7 +57,7 @@ const About = () => {
                 </div>
             </div>
             {
-                !!openModal &&
+                !!openModal && user?.uid &&
                 <Modal
                     aboutInfo={aboutInfo}
                     refetch={refetch}

@@ -19,7 +19,7 @@ const PostDetails = () => {
     const {data: comments, isLoading, refetch} = useQuery({
         queryKey: ['comments'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/comments?id=${_id}`);
+            const res = await fetch(`https://socio-plus-server.vercel.app/comments?id=${_id}`);
             const data = await res.json();
             return data;
         }
@@ -48,7 +48,7 @@ const PostDetails = () => {
             userEmail: usr?.email,
         }
 
-        fetch('http://localhost:5000/comments', {
+        fetch('https://socio-plus-server.vercel.app/comments', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
