@@ -85,7 +85,7 @@ const PostDetails = () => {
                 <figure className='lg:w-96 mx-auto'>
                     <img src={img} alt="" className='rounded-lg w-full' />
                 </figure>
-                <div className="action flex justify-between items-center">
+                <div className="action flex justify-between items-center mt-2">
                     <div className="flex items-center gap-2">
                         {
                             liked ?
@@ -104,7 +104,7 @@ const PostDetails = () => {
                 </form>
             </div>
             <div className="comments mt-5 lg:w-1/2 mx-auto">
-                <h3 className='text-2xl font-semibold'>Comments</h3>
+                <h3 className='text-2xl font-semibold'>Comments <span className='text-gray-300'>{comments.length}</span></h3>
                 {
                     comments.map(comment => <Comment 
                         key={comment._id} 
