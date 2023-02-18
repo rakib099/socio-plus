@@ -12,10 +12,10 @@ import Spinner from '../../components/Spinner/Spinner';
 
 const PostDetails = () => {
     const {user: usr} = useContext(AuthContext);
-    const { _id, user, text, img, likes } = useLoaderData();
+    const { _id, user, text, img, time, likes } = useLoaderData();
     const [liked, setLiked] = useState(false);
     const [counter, setCounter] = useState(likes);
-    const date = msToDate(1676609263733);
+    const date = msToDate(time);
     const {data: comments, isLoading, refetch} = useQuery({
         queryKey: ['comments'],
         queryFn: async () => {

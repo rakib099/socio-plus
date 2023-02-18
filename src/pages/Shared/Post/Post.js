@@ -8,11 +8,11 @@ import msToDate from '../../../utils/msToDate';
 
 const Post = ({post}) => {
     const {user: usr} = useContext(AuthContext);
-    const {_id, user, text, img, likes} = post;
+    const {_id, user, text, img, time, likes} = post;
     const [liked, setLiked] = useState(false);
     const [counter, setCounter] = useState(likes);
     const navigate = useNavigate();
-    const date = msToDate(1676609263733);
+    const date = msToDate(time);
 
     const handleLike = () => {
         setLiked(!liked);

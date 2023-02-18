@@ -42,7 +42,7 @@ const Navbar = () => {
             <div className="navbar-end">
                 <ul className='menu menu-horizontal px-1'>
                     {
-                        user ?
+                        user?.uid ?
                             <>
                                 <li className='font-semibold text-accent text-lg px-4 py-3'>Welcome, {user.displayName}</li>
                                 <li className='font-semibold hidden lg:block'><button onClick={handleLogOut} className='btn btn-outline btn-accent'>Log Out</button></li>
