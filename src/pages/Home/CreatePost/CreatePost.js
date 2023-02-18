@@ -17,6 +17,9 @@ const CreatePost = () => {
 
 
     const handleCreatePost = (data, e) => {
+        if (!user?.uid) {
+            return toast.error('Please login to add a new post!');
+        }
         const text = data.text;
         const image = e.target.photo.files[0];
         setCreatePostLoading(true);
@@ -75,9 +78,14 @@ const CreatePost = () => {
     return (
         <section className='my-5 lg:w-1/2 lg:mx-auto'>
             <form onSubmit={handleSubmit(handleCreatePost)}>
-                <textarea {...register('text', {
-                    required: 'Please write something to post!'
-                })} name='text' className="textarea textarea-accent textarea-lg w-full min-w-xs" placeholder="What's on your mind?"></textarea>
+                {
+                    user?.uid ?
+                    <textarea {...register('text', {
+                        required: 'Please write something to post!'
+                    })} name='text' className="textarea textarea-accent textarea-lg w-full min-w-xs" placeholder="What's on your mind?"></textarea>
+                    :
+                    <textarea {...register('text')} name='text' className="textarea textarea-accent textarea-lg w-full min-w-xs" placeholder="What's on your mind?"></textarea>
+                }
                 {errors.text && <p className='text-error' role="alert">{errors.text?.message}</p>}
                 <div className="flex justify-between relative">
                     <div className="upload-image flex gap-2">
@@ -95,7 +103,7 @@ const CreatePost = () => {
                     </div>
                     {
                         !!createPostLoading ?
-                            <input type="submit" value="Post" className='btn btn-accent loading text-white' />
+                            <button className='btn btn-accent loading text-white'>Loading</button>
                             :
                             <input type="submit" value="Post" className='btn btn-accent text-white' />
                     }

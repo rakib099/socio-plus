@@ -29,7 +29,7 @@ const Post = ({post}) => {
     }
 
     return (
-        <div className="post border border-accent px-4 py-3 rounded-lg lg:w-1/2 mx-auto my-3">
+        <div className="post border border-accent px-4 py-3 rounded-lg lg:w-1/2 mx-auto my-4">
             <div className="flex items-center space-x-3">
                 <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import {FcGoogle} from 'react-icons/fc';
-import { AuthContext } from '../../../contexts/AuthProvider';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
     const {signIn} = useContext(AuthContext);

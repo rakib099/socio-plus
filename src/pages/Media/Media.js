@@ -8,7 +8,7 @@ const Media = () => {
 
     return (
         <div className='mx-5'>
-            <h2 className="text-2xl text-center font-semibold">Posts</h2>
+            <h2 className="text-2xl text-center font-semibold">Posts ({posts.length})</h2>
             {
                 posts.map(post => <Post 
                     key={post._id} 
