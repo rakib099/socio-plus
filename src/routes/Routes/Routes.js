@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layouts/Main";
+import About from "../../pages/About/About";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/Login/Login";
 import Media from "../../pages/Media/Media";
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
                 loader: ({params}) => {
                     return fetch(`http://localhost:5000/posts/${params.id}`);
                 }
+            },
+            {
+                path: '/about',
+                element: <About />
             }
         ]
     }
