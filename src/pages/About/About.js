@@ -1,10 +1,11 @@
-import React from 'react';
-import {useQuery} from '@tanstack/react-query';
+import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import Modal from '../../components/Modal/Modal';
 import Spinner from '../../components/Spinner/Spinner';
 
 const About = () => {
-    const {data: aboutInfo, isLoading, refetch} = useQuery({
+    const [openModal, setOpenModal] = useState(true);
+    const { data: aboutInfo, isLoading, refetch } = useQuery({
         queryKey: ['aboutInfo'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/infos/63f0ade342350b5e723a5db3');
@@ -17,13 +18,13 @@ const About = () => {
         return <Spinner />
     }
 
-    const {name, uni, email, address} = aboutInfo;
+    const { name, uni, email, address } = aboutInfo;
 
     return (
         <div className='mx-5'>
             <h2 className="text-2xl text-center font-semibold">About the author</h2>
             <div className="author lg:w-1/2 mx-auto rounded-lg border border-accent mt-3 p-4 relative">
-                <label htmlFor="edit-modal" className="btn btn-accent btn-sm text-white absolute top-2 right-2">Edit</label>
+                <label onClick={() => setOpenModal(true)} htmlFor="edit-modal" className="btn btn-accent btn-sm text-white absolute top-2 right-2">Edit</label>
                 <div className="flex flex-col gap-3">
                     <div className="name flex gap-3">
                         <span className="text-xl">Name: </span>
@@ -43,7 +44,14 @@ const About = () => {
                     </div>
                 </div>
             </div>
-            <Modal aboutInfo={aboutInfo} />
+            {
+                !!openModal &&
+                <Modal
+                    aboutInfo={aboutInfo}
+                    refetch={refetch}
+                    setOpenModal={setOpenModal}
+                />
+            }
         </div>
     );
 };
