@@ -4,6 +4,7 @@ import About from "../../pages/About/About";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/Login/Login";
 import Media from "../../pages/Media/Media";
+import Messages from "../../pages/Messages/Messages";
 import PostDetails from "../../pages/PostDetails/PostDetails";
 import SignUp from "../../pages/SignUp/SignUp";
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
             {
                 path: '/about',
                 element: <About />
+            },
+            {
+                path: '/messages',
+                element: <Messages />
             }
         ]
     }

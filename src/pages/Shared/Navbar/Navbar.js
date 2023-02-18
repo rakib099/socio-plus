@@ -8,9 +8,9 @@ const Navbar = () => {
 
     const menuItems = <>
         <li className='font-semibold text-accent text-lg'><Link to='/'>Home</Link></li>
-        <li className='font-semibold text-accent text-lg'><Link to='/about'>About</Link></li>
         <li className='font-semibold text-accent text-lg'><Link to='/media'>Media</Link></li>
         <li className='font-semibold text-accent text-lg'><Link to='/messages'>Messages</Link></li>
+        <li className='font-semibold text-accent text-lg'><Link to='/about'>About</Link></li>
     </>
 
     const handleLogOut = () => {
