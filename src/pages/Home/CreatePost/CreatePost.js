@@ -13,7 +13,6 @@ const CreatePost = () => {
     const navigate = useNavigate();
     const imgHostKey = process.env.REACT_APP_imgbb_key;
     const currentTimeInMS = new Date().getTime();
-    console.log(currentTimeInMS);
 
 
     const handleCreatePost = (data, e) => {
