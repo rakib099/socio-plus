@@ -1,11 +1,12 @@
 import React from 'react';
+import Modal from '../../components/Modal/Modal';
 
 const About = () => {
     return (
         <div className='mx-5'>
             <h2 className="text-2xl text-center font-semibold">About the author</h2>
             <div className="author lg:w-1/2 mx-auto rounded-lg border border-accent mt-3 p-4 relative">
-                <button className="btn btn-accent btn-sm text-white absolute top-2 right-2">Edit</button>
+                <label htmlFor="edit-modal" className="btn btn-accent btn-sm text-white absolute top-2 right-2">Edit</label>
                 <div className="flex flex-col gap-3">
                     <div className="name flex gap-3">
                         <span className="text-xl">Name: </span>
@@ -25,6 +26,7 @@ const About = () => {
                     </div>
                 </div>
             </div>
+            <Modal />
         </div>
     );
 };
